@@ -1,0 +1,10 @@
+#create the image of igluco
+FROM wangkai/node_bs_4.5.0
+MAINTAINER wangkai/wkcmys@126.com
+COPY iGlucoRestful/config /usr/src/
+WORKDIR /usr/src/iGlucoRestful
+CMD pm2 start app.js --name iGlucoRestful && pm2 logs
+
+
+
+

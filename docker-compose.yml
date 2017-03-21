@@ -1,0 +1,59 @@
+version: '2'
+services:
+    nginx:
+        build:
+            context: .
+            dockerfile: dockerfile.nginx
+        ports:
+            - "80:80"
+        networks:
+            - frontend
+    igluco:
+        build:
+            context: .
+            dockerfile: dockerfile.igluco
+        volumes:
+            - /data/igluco/:/root/.pm2/logs/
+        networks:
+            - frontend
+    iglucoappv1:
+        build:
+            context: .
+            dockerfile: dockerfile.iglucoappv1
+        volumes:
+            - /data/appv1/:/root/.pm2/logs/
+        networks:
+            - frontend
+    iglucorestful:
+        build:
+            context: .
+            dockerfile: dockerfile.iglucorestful
+        ports:
+            - "3005:3005"
+        volumes:
+            - /data/rest/:/root/.pm2/logs/
+        networks:
+            - iglucorestful
+    json-server:
+        build:
+            context: .
+            dockerfile: dockerfile.jsonserver
+        ports:
+            - "3003:3003"
+        volumes:
+            - /data/json/:/root/.pm2/logs/
+        networks:
+            - json-server
+    mysql:
+        build:
+            context: .
+            dockerfile: dockerfile.mysql5.6
+        ports:
+            - "3306:3306"
+        networks:
+            - mysql
+networks:
+    iglucorestful:
+    json-server:
+    mysql:
+    frontend:

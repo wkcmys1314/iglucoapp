@@ -1,0 +1,11 @@
+{
+  "name": "schedules",
+  "version": "0.1.0",
+  "main": "server.js",
+  "dependencies": {
+	"json-server": "0.9.4"
+  },
+  "scripts": {
+  	"start": "node server.js"
+  }
+}

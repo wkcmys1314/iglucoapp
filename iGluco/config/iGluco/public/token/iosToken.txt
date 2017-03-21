@@ -1,0 +1,5 @@
+{
+  "date": "2016-08-08",
+  "iosAppId": "ios1.1",
+  "iosToken": "a6e04a7f5efeb404ea5ad9c5761ec7daf948567f"
+}

@@ -1,0 +1,47 @@
+{
+  "name": "iGlucoSails",
+  "version": "0.1.0",
+  "main": "app.js",
+  "dependencies": {
+    "bluebird": "^3.4.6",
+    "cron": "^1.2.1",
+    "hoek": "^4.1.0",
+    "joi": "^10.0.5",
+    "jpush-sdk": "^3.2.9",
+    "lodash": "^4.17.2",
+    "moment": "^2.17.1",
+    "node-schedule": "^1.2.0",
+    "object-assign": "^4.1.0",
+    "pluralize": "^3.0.0",
+    "rc": "1.1.6",
+    "request": "^2.79.0",
+    "sails": "0.11.4",
+    "sails-disk": "^0.10.10",
+    "sails-hook-cron": "^2.2.0",
+    "sails-mysql": "^0.11.5",
+    "sails-service-cipher": "^3.2.1",
+    "sails-service-hash": "^3.2.1",
+    "sails-service-image": "^3.1.1",
+    "sails-service-location": "^3.3.1",
+    "sails-service-pusher": "^3.2.2",
+    "sails-service-social": "^3.1.1",
+    "soap": "^0.18.0",
+    "superagent": "^3.2.1",
+    "utility": "^1.9.0",
+    "validator": "^6.2.0"
+  },
+  "devDependencies": {
+    "esdoc": "0.4.3",
+    "chai": "3.4.1",
+    "istanbul": "0.4.2",
+    "mocha": "2.3.4",
+    "sinon": "1.17.2"
+  },
+  "scripts": {
+    "clean": "rm -rf ./.tmp",
+    "debug": "node debug app.js",
+    "docs": "esdoc -c esdoc.json",
+    "start": "node app.js",
+    "test": "istanbul cover _mocha"
+  }
+}

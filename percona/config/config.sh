@@ -1,0 +1,9 @@
+#!/bin/sh
+#恢复mysql数据
+mysql -uroot -proot << EOF
+use mysql;
+GRANT ALL PRIVILEGES ON *.* TO root@"120.92.63.171" IDENTIFIED BY "root" WITH GRANT OPTION; 
+GRANT ALL PRIVILEGES ON *.* TO root@"60.29.171.162" IDENTIFIED BY "root" WITH GRANT OPTION; 
+FLUSH PRIVILEGES;
+exit
+EOF

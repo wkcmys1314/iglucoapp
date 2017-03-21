@@ -1,0 +1,9 @@
+#create the image of igluco
+FROM wangkai/node_bs_4.5.0
+MAINTAINER wangkai/wkcmys@126.com
+COPY iGluco/config /usr/src/
+CMD pm2 start /usr/src/iGluco/bin/www --name iGluco && pm2 logs
+
+
+
+

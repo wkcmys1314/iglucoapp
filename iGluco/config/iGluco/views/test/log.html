@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>上传日志白盒</title>
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+	<!-- <script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script> -->
+</head>
+<body>
+
+<span>上传日志</span>
+<br /><br />
+<form id="uploadAppLogForm" >
+	<input type="file" name="File" id="File" ><br />
+	文件名：<input type="text" name="FileName"><br />
+	LevelId：<input type="text" name="LevelId"><br /><br />
+</form>
+<span>结果:</span>
+<br />
+<div id="uploadAppLogRes"></div>
+<br />
+<button id="uploadAppLogBtn" onclick="uploadAppLog()">上传</button><br /><br />
+<strong><span>注意：上传的文件名必须和填写的文件名一致</span></strong>
+
+<br /><br /><br /><br /> 
+<!--<span><a href="http://120.92.57.192/public/android/APK以及Jar包.zip">Android APK以及Jar包 下载地址</a></span>
+<br />
+<span style="color:red;">注：App中集成此SDK需要在gradle里加入compile 'com.google.code.gson:gson:2.7'</span>
+-->
+<!-- <span>上传日志</span>
+<br /><br />
+<input type="file" name="File"><br /><br />
+文件名：<input type="text" name="FileName"><br />
+LevelId：<input type="text" name="LevelId"><br /><br />
+<br /><br />
+<span>结果:</span>
+<br />
+<div id="AppLog"></div>
+<button onclick="uploadAppLog()">上传</button>
+<br /><br /><br /><br /> -->
+
+<script type="text/javascript">
+	
+	function uploadAppLog() {
+
+		var formData = new FormData($( "#uploadAppLogForm" )[0]);
+		$.ajax({
+			url: "/log/uploadAppLog",
+			type: "POST",
+			data: formData,
+			// async: false,  
+          	cache: false,  
+          	contentType: false,  
+          	processData: false,
+			success:function(data){
+				// alert(data);
+				data = JSON.stringify(data);
+				$("#uploadAppLogRes").html(data);
+				$("#uploadAppLogBtn").attr("disabled", true);
+			},
+			error: function (data) {
+				data = JSON.stringify(data);
+               $("#uploadAppLogRes").html(data);
+          	}
+		});
+
+		/*var fileObj = document.getElementById("File").files[0]; 
+        var FileController = "/log/uploadAppLog";                
+        var form = new FormData();
+
+        form.append("FileName", $("[name='FileName']").val() );
+        form.append("LevelId", $("[name='LevelId']").val() );
+        form.append("file", fileObj);   
+        var xhr = new XMLHttpRequest();
+        xhr.open("post", FileController, true);
+        xhr.onload = function (data) {
+            $("#uploadAppLogRes").html(data);
+        };
+        xhr.send(form);*/
+
+	}
+
+</script>
+
+</body>
+</html>

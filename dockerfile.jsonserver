@@ -1,0 +1,9 @@
+#create the image of igluco
+FROM wangkai/node_bs_4.5.0
+MAINTAINER wangkai/wkcmys@126.com
+COPY json-server/config /usr/src/
+CMD pm2 start /usr/src/json-server/server.js --name json-server && pm2 logs
+
+
+
+

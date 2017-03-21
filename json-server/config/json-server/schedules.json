@@ -1,0 +1,184 @@
+{
+  "schedules": [
+    {
+      "AppVersion": [
+        "4.1.0",
+        "ABG4.2.5"
+      ],
+      "PhoneOS": [
+        "10.0.1",
+        "7.0",
+        "4.2.2"
+      ],
+      "PhoneType": [
+        "iOS",
+        "android"
+      ],
+      "PhoneLang": [
+        "zh",
+        "en"
+      ],
+      "PhoneRegion": [
+        "VN",
+        "SG",
+        "CN"
+      ],
+      "alert_info": {
+        "alert": "安卓alert",
+        "title": "安卓title",
+        "date_time": "2017-01-25 10:26"
+      },
+      "id": 1
+    },
+    {
+      "AppVersion": [
+        "4.1.0",
+        "ABG4.2.5"
+      ],
+      "PhoneOS": [
+        "10.0.1",
+        "7.0",
+        "4.2.2"
+      ],
+      "PhoneType": [
+        "iOS",
+        "android"
+      ],
+      "PhoneLang": [
+        "zh",
+        "en"
+      ],
+      "PhoneRegion": [
+        "VN",
+        "SG",
+        "CN"
+      ],
+      "alert_info": {
+        "alert": "安卓alert",
+        "title": "安卓title",
+        "date_time": "2016-12-29 00:37"
+      },
+      "id": 2
+    },
+    {
+      "AppVersion": [
+        "4.1.0",
+        "ABG4.2.5"
+      ],
+      "PhoneOS": [
+        "10.0.1",
+        "7.0",
+        "4.2.2"
+      ],
+      "PhoneType": [
+        "iOS",
+        "android"
+      ],
+      "PhoneLang": [
+        "zh",
+        "en"
+      ],
+      "PhoneRegion": [
+        "VN",
+        "SG",
+        "CN"
+      ],
+      "alert_info": {
+        "alert": "安卓alert",
+        "title": "安卓title",
+        "date_time": "2016-12-29 00:37"
+      },
+      "id": 3
+    },
+    {
+      "AppVersion": [
+        "4.1.0",
+        "ABG4.2.5"
+      ],
+      "PhoneOS": [
+        "10.0.1",
+        "7.0",
+        "4.2.2"
+      ],
+      "PhoneType": [
+        "iOS",
+        "android"
+      ],
+      "PhoneLang": [
+        "zh",
+        "en"
+      ],
+      "PhoneRegion": [
+        "VN",
+        "SG",
+        "CN"
+      ],
+      "alert_info": {
+        "alert": "安卓alert",
+        "title": "安卓title",
+        "date_time": "2016-12-29 00:37"
+      },
+      "id": 4
+    },
+    {
+      "AppVersion": [
+        "4.1.0",
+        "ABG4.2.5"
+      ],
+      "PhoneOS": [
+        "10.0.1",
+        "7.0",
+        "4.2.2"
+      ],
+      "PhoneType": [
+        "iOS",
+        "android"
+      ],
+      "PhoneLang": [
+        "zh",
+        "en"
+      ],
+      "PhoneRegion": [
+        "VN",
+        "SG",
+        "CN"
+      ],
+      "alert_info": {
+        "alert": "安卓alert",
+        "title": "安卓title",
+        "date_time": "2016-12-29 00:37"
+      },
+      "id": 5
+    },
+    {
+      "AppVersion": [
+        "4.1.0",
+        "ABG4.2.5"
+      ],
+      "PhoneOS": [
+        "10.0.1",
+        "7.0",
+        "4.2.2"
+      ],
+      "PhoneType": [
+        "iOS",
+        "android"
+      ],
+      "PhoneLang": [
+        "zh",
+        "en"
+      ],
+      "PhoneRegion": [
+        "VN",
+        "SG",
+        "CN"
+      ],
+      "alert_info": {
+        "alert": "安卓alert",
+        "title": "安卓title",
+        "date_time": "2016-12-29 00:37"
+      },
+      "id": 6
+    }
+  ]
+}

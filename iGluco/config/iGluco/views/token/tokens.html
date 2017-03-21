@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>设置token</title>
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>
+</head>
+<body>
+
+<ul>
+  <% result.forEach(function(token){ %>
+    PhoneOS: <%= token.PhoneOS %>&nbsp;&nbsp;&nbsp;
+    AppVersion: <%= token.AppVersion %>&nbsp;&nbsp;&nbsp;
+    AccessToken: <%= token.AccessToken %><br /><br />
+  <% }) %>
+</ul> 
+
+<span>设置androidAppVersion</span>
+<br /><br />
+androidAppVersion:  <input type="text" name="androidAppVersion" placeholder="androidAppVersion" />
+<br /><br />
+
+iosAppVersion:  <input type="text" name="iosAppVersion" placeholder="iosAppVersion" />
+<br /><br />
+<div id="AppVersion"></div>
+<br /><br />
+<button onclick="setToken()">提交</button>
+<br /><br /><br /><br />
+
+<script type="text/javascript">
+	// window.location.href = window.location.href;
+	// console.log(result);
+	function setToken () {
+		var androidAppVersion = $("input[name='androidAppVersion']").val();
+		var iosAppVersion = $("input[name='iosAppVersion']").val();
+
+		if(typeof iosAppVersion === 'undefined' || iosAppVersion=="") {
+			iosAppVersion = " ";
+		}
+		if(typeof androidAppVersion === 'undefined' || androidAppVersion=="") {
+			androidAppVersion = " ";
+		}
+
+		$.ajax({
+			url: "/token/setToken",
+			dataType: "text",
+			data: "androidAppVersion=" + androidAppVersion + "&iosAppVersion=" + iosAppVersion,
+			type: "POST",
+			success:function(data){
+				if(JSON.parse(data).ResultMessage == "100" ||
+				 JSON.parse(data).ResultMessage == 100) {
+					// window.reload();
+					window.location.href = window.location.href;
+				}else {
+					$("#AppVersion").html(data);
+				}
+			}
+		});
+	}
+
+</script>
+
+</body>
+</html>

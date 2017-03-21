@@ -1,0 +1,46 @@
+
+增：
+接口地址：http://120.92.57.192:3000/token/setToken
+demo参考：
+function setToken () {
+	var androidAppVersion = $("input[name='androidAppVersion']").val();
+	var iosAppVersion = $("input[name='iosAppVersion']").val();
+
+	if(typeof iosAppVersion === 'undefined' || iosAppVersion=="") {
+		iosAppVersion = " ";
+	}
+	if(typeof androidAppVersion === 'undefined' || androidAppVersion=="") {
+		androidAppVersion = " ";
+	}
+
+	$.ajax({
+		url: "/token/setToken",
+		dataType: "text",
+		data: "androidAppVersion=" + androidAppVersion + "&iosAppVersion=" + iosAppVersion,
+		type: "POST",
+		success:function(data){
+			if(JSON.parse(data).ResultMessage == "100" ||
+			 JSON.parse(data).ResultMessage == 100) {
+				// window.reload();
+				window.location.href = window.location.href;
+			}else {
+				$("#AppVersion").html(data);
+			}
+		}
+	});
+}
+
+删：
+接口地址：http://120.92.57.192:3000/token/deleteByAppVersion
+请求方式：POST
+参数名：AppVersion
+
+改：
+接口地址：http://120.92.57.192:3000/token/updateByAppVersion
+请求方式：POST
+参数名：AppVersion
+
+查：
+接口地址：http://120.92.57.192:3000/token/queryAllAccessToken
+请求方式：POST
+不需要参数

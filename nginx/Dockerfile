@@ -1,0 +1,11 @@
+##source of images
+FROM docker.io/ansible/centos7-ansible
+#owner of images
+MAINTAINER wangkai wkcmys@126.com
+#install yum  packages
+#install the package:pcre nginx libdiplus mono XSP
+RUN yum -y update && yum install -y nginx 
+#copy the nginx.conf and start.sh TO images
+COPY config/nginx.conf /etc/nginx/
+#commond of start docker
+CMD nginx && tail -f /var/log/nginx/access.log

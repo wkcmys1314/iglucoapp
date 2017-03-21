@@ -1,0 +1,5 @@
+{
+  "date": "2016-08-08",
+  "androidAppId": "android1.1",
+  "androidToken": "540c7a232276a0ec4f690422769aee8d106acda1"
+}

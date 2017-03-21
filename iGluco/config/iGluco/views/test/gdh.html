@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+	<title><%= title %></title>
+	<script type="text/javascript" src="http://cdn.bootcss.com/jquery/1.10.1/jquery.min.js"></script>
+</head>
+<body>
+
+<span>查询AccessToken</span>
+<br /><br />
+<input type="text" name="AppVersion" placeholder="AppVersion">
+<br /><br />
+<span>结果:</span>
+<br />
+<div id="AccessToken"></div>
+<button onclick="getAccessToken()">提交</button>
+<br /><br /><br /><br />
+
+<!-- <span>查询AndroidToken</span>
+<br /><br />
+<input type="text" name="androidAppId" placeholder="androidAppId">
+<br /><br />
+<span>结果:</span>
+<br />
+<div id="AndroidToken"></div>
+<button onclick="getAndroidToken()">提交</button>
+<br /><br /><br /><br />
+
+<span>查询IosToken</span>
+<br /><br />
+<input type="text" name="iosAppId" placeholder="iosAppId">
+<br /><br />
+<span>结果:</span>
+<br />
+<div id="IosToken"></div>
+<button onclick="getIosToken()">提交</button>
+<br /><br /><br /><br /> -->
+
+<!-- <div><%= body %></div> -->
+<span>查询所有地区是否支持gdh试条</span>
+<br /><br />
+<input type="text" name="AccessToken" placeholder="AccessToken">
+<br /><br />
+<span>结果:</span>
+<br />
+<div id="allRes"></div>
+<button onclick="queryAll()">提交</button>
+<br /><br /><br /><br />
+
+<span>根据国家编码查询该地区是否支持gdh</span>
+<br /><br />
+<input type="text" name="CountryCode" placeholder="请输入CountryCode" style="width:200px;height:30px" />
+<br />
+<span>结果:</span>
+<br />
+<div id="queryRes"></div>
+<button onclick="queryByCountryCode()">提交</button>
+<br /><br /><br /><br />
+
+<span>上传gdh信息</span><br />
+<br />
+<textarea id="info" rows="10" cols="60"></textarea>
+<br />
+<span>注：以上字段，理论上应该是都是非空的，但是为了保证接口的稳定性，我对所有字段进行了非空过滤，<br />所以某个字段如果出现为空的情况,也可以通过。</span>
+<br />
+<span>结果:</span>
+<div id="insertRes"></div>
+<button onclick="insertGdhInfo()">提交</button>
+<br /><br /><br /><br />
+
+<span>查询GDH信息上传记录</span>
+<br /><br />
+<span>结果:</span>
+<br />
+<div id="allGdh"></div>
+<button onclick="queryGdhInfoAll()">提交</button>
+<br /><br /><br /><br />
+
+<span>发送短信</span>
+<br /><br />
+<input type="text" name="SMSToken" placeholder="AccessToken">
+<br />
+<input type="text" name="mobile" placeholder="mobile">
+<br />
+<input type="text" name="ECode" placeholder="ECode">
+<br /><br />
+<span>结果:</span>
+<br />
+<div id="sendSMS"></div>
+<button onclick="sendSMS()">提交</button>
+
+<script type="text/javascript">
+
+	function sendSMS () {
+		var AccessToken = $("input[name='SMSToken']").val();
+		var mobile = $("input[name='mobile']").val();
+		var ECode = $("input[name='ECode']").val();
+		// var ECode = "93";
+		// alert(AccessToken);alert(mobile);
+		$.ajax({
+			url: "/sms/sendSMS",
+			dataType: "text",
+			type: "POST",
+			data:"AccessToken=" + AccessToken + "&mobile=" + mobile + "&ECode=" + ECode,
+			success:function(data){
+				// data.toString();
+				$("#sendSMS").html(data);
+				// alert(data['TS']);
+			}
+		});
+	}
+
+	var str = "UserID=123&UserName=UserName&mDeviceId=mDeviceId&mDeviceType=mDeviceType&" ;
+		str += "DeviceId=DeviceId&DeviceType=DeviceType&AppVersion=AppVersion&CountryCode=CountryCode&";
+		str += "MeasurementTime=2016-07-26 13:00:00&TimeZone=123&stripNumber=123&";
+		str += "AccessToken=2ecef47ff83953c033f2db292447656e861263fd" 
+	$("#info").val(str);
+
+	function insertGdhInfo (){
+		var info = $("#info").val();
+		$.ajax({
+			url: "/gdh/insertGdhInfo",
+			dataType: "text",
+			type: "POST",
+			data:info,
+			success:function(data){
+				// data.toString();
+				$("#insertRes").html(data);
+				// alert(data['TS']);
+			}
+		});
+	}
+
+	function queryByCountryCode() {
+		var CountryCode = $("input[name='CountryCode']").val();
+		$.ajax({
+			url: "/gdh/queryByCountryCode",
+			dataType: "text",
+			type: "POST",
+			data:"CountryCode="+CountryCode,
+			success:function(data){
+				// data.toString();
+				$("#queryRes").html(data);
+				// alert(data['TS']);
+			}
+		});
+	}
+
+	function queryAll () {
+		var AccessToken = $("input[name='AccessToken']").val();
+		$.ajax({
+			url: "/gdh/queryAll",
+			dataType: "text",
+			data: "AccessToken=" + AccessToken,
+			type: "POST",
+			success:function(data){
+				// data.toString();
+				// console.log("string: " + data);
+				data = JSON.parse(data);
+				data = data.ReturnValue;
+				console.log("arr: " + data[0]);
+				// console.log("obj: " + data);
+				$("#allRes").append("<span>国家编码&nbsp;&nbsp;国家名称&nbsp;&nbsp;试条类型<br />");
+				for(var i=0; i<500; i++) {
+					// console.log(data.ReturnValue[i]);
+					$("#allRes").append(
+						"<span>" + 
+						data[i].CountryCode + "&nbsp;&nbsp;" +
+						data[i].CountryName + "&nbsp;&nbsp;" +
+						data[i].StripType + 
+						"</span>" + 
+						"<br />"
+					);
+				}
+				// $("#allRes").html(data);
+				// alert(data['TS']);
+			}
+		});
+	}
+
+	function queryGdhInfoAll () {
+		$.ajax({
+			url: "/gdh/queryGdhInfoAll",
+			dataType: "text",
+			type: "POST",
+			success:function(data){
+				// data.toString();
+				
+				// alert(data['TS']);
+
+				data = JSON.parse(data);
+				data = data.ReturnValue;
+				for (var i = 0; i < data.length-6; i++) {
+					data[i] = "不显示";
+					// item = data[i];
+					// console.log(item);
+					// console.log(i + ": " +  item.id);
+				}
+				data = JSON.stringify(data);
+				$("#allGdh").html(data);
+				// alert
+				// $("#allGdh").html(data);
+
+				// temp.toString();
+				// $("#allGdh").html(temp);
+
+			}
+		});
+	}
+
+	function getAccessToken () {
+		var AppVersion = $("input[name='AppVersion']").val();
+		$.ajax({
+			// url: "https://127.0.0.1:3001/token/getToken",
+			url: "/token/getToken",
+			dataType: "text",
+			// dataType: "jsonp",
+			data: "AppVersion=" + AppVersion,
+			type: "POST",
+			success:function(data){
+				// data.toString();
+				$("#AccessToken").html(data);
+				// alert(data['TS']);
+			}
+		});
+	}
+
+	
+</script>
+
+</body>
+</html>
